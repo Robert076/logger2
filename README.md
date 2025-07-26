@@ -1,10 +1,10 @@
 # 🚀 logger2
 
-An AWS deployment with 2 microservices that talk to eachother, for the sake of learning terraform.
+An AWS deployment with 2 services that talk to eachother, for the sake of learning terraform.
 
 ## ⚙️ How it works
 
-The repository consists of two (micro)services:
+The repository consists of two services:
 
 - a database service which exposes an endpoint that can be used to read/write
 - a logger service, constantly writing to the database via the endpoint
