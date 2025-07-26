@@ -21,3 +21,6 @@ We can re-deploy or modify the entire infrastructure by just modifying our file 
 - Docker
 - Terraform
 - AWS
+
+## ✍🏻 Rough sketch
+<img width="1247" height="663" alt="Image" src="https://github.com/user-attachments/assets/8a5e8d72-f1cb-4e88-bbe8-37131ebf00b6" />
