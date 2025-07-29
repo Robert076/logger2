@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_logger2
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRESS_DB=${POSTGRESS_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - logger2_data:/var/lib/postgresql/data
+
+volumes:
+  logger2_data:
