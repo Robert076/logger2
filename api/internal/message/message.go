@@ -4,6 +4,6 @@ import "time"
 
 type Message struct {
 	Id        int
-	Text      string
+	Message   string
 	CreatedAt time.Time
 }

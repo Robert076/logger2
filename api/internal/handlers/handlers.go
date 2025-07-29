@@ -24,11 +24,11 @@ type DBConfig struct {
 
 func InitDB() (*sql.DB, error) {
 	dbConfig := DBConfig{
-		Host:     os.Getenv("DB_HOST"),
-		User:     os.Getenv("DB_USER"),
-		Password: os.Getenv("DB_PASSWORD"),
-		DBName:   os.Getenv("DBNAME"),
-		Port:     os.Getenv("DBPORT"),
+		Host:     os.Getenv("POSTGRES_HOST"),
+		User:     os.Getenv("POSTGRES_USER"),
+		Password: os.Getenv("POSTGRES_PASSWORD"),
+		DBName:   os.Getenv("POSTGRES_DB"),
+		Port:     os.Getenv("POSTGRES_PORT"),
 	}
 	psqlInfo := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
 		dbConfig.Host, dbConfig.Port, dbConfig.User, dbConfig.Password, dbConfig.DBName)
@@ -60,8 +60,8 @@ func HandlerPost(context *gin.Context) {
 		return
 	}
 
-	insertQuery := `INSERT INTO messages(text, created_at) VALUES($1, $2)`
-	if _, err = db.Exec(insertQuery, msg.Text, time.Now()); err != nil {
+	insertQuery := `INSERT INTO messages(message, created_at) VALUES($1, $2)`
+	if _, err = db.Exec(insertQuery, msg.Message, time.Now()); err != nil {
 		http.Error(context.Writer, "Could not insert into DB", http.StatusBadRequest)
 		log.Printf("Could not insert into DB: %v", err)
 		return
