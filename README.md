@@ -27,7 +27,8 @@ Uses `gin` since with the default `http.handleFunc` you cannot define multiple r
 
 Opens up the port `:8080`, which accepts 2 types of requests: `POST` and `GET`
 
-`GET localhost:8080/` gets messages (obviously it can't be localhost on aws but this is just an illustration)<br>
+`GET localhost:8080/` gets messages (obviously it can't be localhost on aws but this is just an illustration)
+
 `POST localhost:8080/` posts message
 
 ## ✍🏻 Rough sketch
