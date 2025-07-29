@@ -11,6 +11,7 @@ import (
 
 	"github.com/Robert076/logger2.git/api/internal/message"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
@@ -23,6 +24,7 @@ type DBConfig struct {
 }
 
 func InitDB() (*sql.DB, error) {
+	godotenv.Load()
 	dbConfig := DBConfig{
 		Host:     os.Getenv("POSTGRES_HOST"),
 		User:     os.Getenv("POSTGRES_USER"),
