@@ -11,7 +11,7 @@ services:
     volumes:
       - logger2_data:/var/lib/postgresql/data
   api:
-    image: robert076/logger2:v4
+    image: robert076/logger2-api:v1
     container_name: api_logger2
     ports:
       - "8080:8080"
