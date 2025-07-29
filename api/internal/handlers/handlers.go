@@ -69,3 +69,48 @@ func HandlerPost(context *gin.Context) {
 		return
 	}
 }
+
+func HandlerGet(context *gin.Context) {
+	db, err := InitDB()
+
+	if err != nil {
+		http.Error(context.Writer, "Could not initialize DB", http.StatusInternalServerError)
+		log.Printf("Could not open db: %v", err)
+		return
+	}
+
+	rows, err := db.Query(`SELECT * FROM "messages"`)
+	if err != nil {
+		http.Error(context.Writer, "Could not query DB", http.StatusInternalServerError)
+		log.Printf("Could not query db: %v", err)
+		return
+	}
+
+	defer rows.Close()
+
+	var msg message.Message
+	for rows.Next() {
+		err := rows.Scan(&msg.Id, &msg.Message, &msg.CreatedAt)
+		if err != nil {
+			http.Error(context.Writer, "Could not scan DB row", http.StatusInternalServerError)
+			log.Printf("Could not scan db row: %v", err)
+			return
+		}
+
+		enc := json.NewEncoder(context.Writer)
+		enc.SetIndent("", "    ")
+
+		if err := enc.Encode(msg); err != nil {
+			http.Error(context.Writer, "Could not encode message", http.StatusInternalServerError)
+			log.Printf("Could not encode message: %v", err)
+			return
+		}
+	}
+
+	err = rows.Err()
+	if err != nil {
+		http.Error(context.Writer, "Error occured when reading db", http.StatusInternalServerError)
+		log.Printf("Error occured when reading db: %v", err)
+		return
+	}
+}

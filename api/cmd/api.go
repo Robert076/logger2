@@ -7,6 +7,7 @@ import (
 
 func main() {
 	r := gin.New()
+	r.GET("/", handlers.HandlerGet)
 	r.POST("/", handlers.HandlerPost)
 	r.Run(":8080")
 }
