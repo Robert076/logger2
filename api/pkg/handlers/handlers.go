@@ -24,7 +24,9 @@ type DBConfig struct {
 }
 
 func InitDB() (*sql.DB, error) {
-	godotenv.Load()
+	if err := godotenv.Load(); err != nil {
+		log.Fatalf("Error loading .env file")
+	}
 	dbConfig := DBConfig{
 		Host:     os.Getenv("POSTGRES_HOST"),
 		User:     os.Getenv("POSTGRES_USER"),
