@@ -10,5 +10,5 @@ func main() {
 	r.GET("/", handlers.HandlerGet)
 	r.POST("/", handlers.HandlerPost)
 	r.Run(":8080")
-	// hello linter
+	// hello linter :D
 }
