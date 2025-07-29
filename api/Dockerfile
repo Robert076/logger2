@@ -10,7 +10,7 @@ COPY . .
 
 # CGO_ENABLED=0 means a static build, so there is no dynamic linking
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o logger2-service
+RUN CGO_ENABLED=0 GOOS=linux go build -o logger2-service ./cmd/
 
 FROM alpine:edge
 
