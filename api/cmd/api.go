@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/Robert076/logger2.git/api/internal/handlers"
+	"github.com/Robert076/logger2.git/api/pkg/handlers"
 	"github.com/gin-gonic/gin"
 )
 
