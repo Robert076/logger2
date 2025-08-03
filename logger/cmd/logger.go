@@ -2,35 +2,36 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"log"
 	"net/http"
-
-	"github.com/joho/godotenv"
+	"os"
+	"time"
 )
 
 func main() {
-	if err := godotenv.Load(); err != nil {
-		log.Fatalf("Error loading .env file")
-	}
+	endpoint := os.Getenv("API_HOST")
+	port := os.Getenv("API_PORT")
+	postUrl := fmt.Sprintf("%s:%s", endpoint, port)
 
-	endpoint := "http://api:8080/"
 	body := []byte(`{
 		"message": "Hello message from logger service"
 	}`)
 
-	r, err := http.NewRequest("POST", endpoint, bytes.NewBuffer(body))
+	r, err := http.NewRequest("POST", postUrl, bytes.NewBuffer(body))
 	if err != nil {
 		log.Fatalf("Error creating request: %v", err)
 	}
 
 	r.Header.Add("Content-Type", "application/json")
 
-	client := &http.Client{}
-	res, err := client.Do(r)
-	if err != nil {
-		log.Fatalf("Error sending request: %v", err)
+	for i := 0; i < 10; i++ {
+		client := &http.Client{}
+		res, err := client.Do(r)
+		if err != nil {
+			log.Fatalf("Error sending request: %v", err)
+		}
+		time.Sleep(2 * time.Second)
+		res.Body.Close()
 	}
-
-	defer res.Body.Close()
-
 }
