@@ -33,3 +33,7 @@ Opens up the port `:8080`, which accepts 2 types of requests: `POST` and `GET`
 
 ## ✍🏻 Rough sketch
 <img width="1247" height="663" alt="Image" src="https://github.com/user-attachments/assets/8a5e8d72-f1cb-4e88-bbe8-37131ebf00b6" />
+
+## 🍿 Notes to myself: 
+As I advance with this progress I begin to grasp the various stuff you can acomplish with CI/CD pipelines.
+A useful thought from ChatGPT: `🧠 Mental Model: GitHub Actions = “Cloud CI Shell Scripts”`
