@@ -1,0 +1,27 @@
+jobs:
+  build-api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Log in to docker hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build and push service
+        run: |
+          cd api
+          docker build . -t ${{ secrets.API_IMAGE_NAME }}:latest
+          docker push ${{ secrets.API_IMAGE_NAME }}:latest
+  build-logger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Log in to docker hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build and push service
+        run: |
+          cd logger
+          docker build . -t ${{ secrets.LOGGER_IMAGE_NAME }}:latest
+          docker push ${{ secrets.LOGGER_IMAGE_NAME }}:latest
