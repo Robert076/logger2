@@ -10,18 +10,18 @@ COPY . .
 
 # CGO_ENABLED=0 means a static build, so there is no dynamic linking
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o logger2-service ./cmd/
+RUN CGO_ENABLED=0 GOOS=linux go build -o logger2-api ./cmd/
 
 FROM alpine:edge
 
 WORKDIR /src
 
-COPY --from=build /src/logger2-service .
+COPY --from=build /src/logger2-api .
 
-RUN chmod +x /src/logger2-service
+RUN chmod +x /src/logger2-api
 
 RUN apk --no-cache add ca-certificates
 
 EXPOSE 1234
 
-ENTRYPOINT [ "/src/logger2-service" ]
+ENTRYPOINT [ "/src/logger2-api" ]
