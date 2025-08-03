@@ -1,6 +1,6 @@
 # 🚀 logger2
 
-An AWS deployment with 2 services that talk to eachother, for the sake of learning terraform. Uses CI/CD for automating testing and deployment via Github Actions (see `.github/workflows`).
+An AWS deployment with 2 services that talk to eachother, for the sake of learning terraform. Uses CI/CD for automating linting and deployment via Github Actions (see `.github/workflows`).
 
 ## ⚙️ How it works
 
