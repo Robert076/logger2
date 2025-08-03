@@ -10,8 +10,8 @@ on:
     paths:
       - "**/*.go"
 jobs:
-  lint:
-    name: Lint
+  lint-api:
+    name: Lint-Api
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -27,3 +27,20 @@ jobs:
       - name: Run golangci-lint
         run: golangci-lint run ./cmd/
         working-directory: ./api
+  lint-logger:
+    name: Lint-Logger
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.23"
+      - name: Install golangci-lint
+        run: go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+      - name: Run golangci-lint
+        run: golangci-lint run ./cmd/
+        working-directory: ./logger
