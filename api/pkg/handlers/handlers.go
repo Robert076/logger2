@@ -11,7 +11,6 @@ import (
 
 	"github.com/Robert076/logger2.git/api/pkg/message"
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
@@ -24,9 +23,6 @@ type DBConfig struct {
 }
 
 func InitDB() (*sql.DB, error) {
-	if err := godotenv.Load(); err != nil {
-		log.Fatalf("Error loading .env file")
-	}
 	dbConfig := DBConfig{
 		Host:     os.Getenv("POSTGRES_HOST"),
 		User:     os.Getenv("POSTGRES_USER"),
