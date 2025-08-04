@@ -32,11 +32,11 @@ resource "aws_route_table" "public_table" {
 }
 
 resource "aws_route_table_association" "api" {
-  subnet_id      = aws_subnet.subnet_logger2_api
-  route_table_id = aws_route_table.public_table
+  subnet_id      = aws_subnet.subnet_logger2_api.id
+  route_table_id = aws_route_table.public_table.id
 }
 
 resource "aws_route_table_association" "logger" {
-  subnet_id      = aws_subnet.subnet_logger2_logger
-  route_table_id = aws_route_table.public_table
+  subnet_id      = aws_subnet.subnet_logger2_logger.id
+  route_table_id = aws_route_table.public_table.id
 }
