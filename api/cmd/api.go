@@ -3,11 +3,13 @@ package main
 import (
 	"log"
 
-	"github.com/Robert076/logger2.git/api/pkg/handlers"
+	"github.com/Robert076/logger2.git/api/pkg
+	/handlers"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	// Hello World from CI
 	r := gin.New()
 	r.GET("/", handlers.HandlerGet)
 	r.POST("/", handlers.HandlerPost)
