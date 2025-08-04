@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	// Hello
+	// Hello CI
 	r := gin.New()
 	r.GET("/", handlers.HandlerGet)
 	r.POST("/", handlers.HandlerPost)

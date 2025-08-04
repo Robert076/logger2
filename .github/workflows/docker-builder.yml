@@ -31,10 +31,9 @@ jobs:
       - name: Log in to docker hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      - name: Debug image name and tag
-        run: |
-          echo "API_IMAGE_NAME=${{ secrets.API_IMAGE_NAME }}"
-          echo "SHA=${{ steps.vars.outputs.SHA }}"
+      - name: Get commit hash for docker image tag
+        id: vars
+        run: echo "SHA=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
       - name: Build and push service
         run: |
