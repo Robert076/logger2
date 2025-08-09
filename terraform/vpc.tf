@@ -1,7 +1,3 @@
-provider "aws" {
-  region = "eu-north-1"
-}
-
 resource "aws_vpc" "roberts_vpc" {
   cidr_block = "10.0.0.0/16"
 }
