@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-messages-table
+spec:
+  template:
+    spec:
+      containers:
+        - name: create-table
+          image: postgres:latest
+          env:
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: POSTGRES_PASSWORD
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: POSTGRES_USER
+            - name: PGDATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: POSTGRES_DB
+            - name: PGHOST
+              value: postgres-robert
+            - name: PGPORT
+              value: "5432"
+          command: ["psql"]
+          args:
+            - "-c"
+            - |
+              CREATE TABLE IF NOT EXISTS messages (
+                id SERIAL PRIMARY KEY,
+                message TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+              );
+      restartPolicy: OnFailure
