@@ -7,15 +7,17 @@ resource "aws_internet_gateway" "roberts_gateway" {
 }
 
 resource "aws_subnet" "subnet_logger2_api" {
-  vpc_id            = aws_vpc.roberts_vpc.id
-  cidr_block        = "10.0.1.0/24"
-  availability_zone = "eu-north-1a"
+  vpc_id                  = aws_vpc.roberts_vpc.id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "eu-north-1a"
+  map_public_ip_on_launch = true
 }
 
 resource "aws_subnet" "subnet_logger2_logger" {
-  vpc_id            = aws_vpc.roberts_vpc.id
-  cidr_block        = "10.0.2.0/24"
-  availability_zone = "eu-north-1b"
+  vpc_id                  = aws_vpc.roberts_vpc.id
+  cidr_block              = "10.0.2.0/24"
+  availability_zone       = "eu-north-1b"
+  map_public_ip_on_launch = true
 }
 
 resource "aws_route_table" "public_table" {

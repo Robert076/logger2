@@ -88,8 +88,8 @@ resource "aws_eks_node_group" "roberts_nodes" {
     min_size     = 1
   }
 
-  ami_type       = "AL2_x86_64"
-  instance_types = ["t3.small"]
+  ami_type       = "BOTTLEROCKET_x86_64"
+  instance_types = ["t3.medium"]
 
   depends_on = [
     aws_iam_role_policy_attachment.AmazonEC2ContainerRegistryReadOnly_robert,
